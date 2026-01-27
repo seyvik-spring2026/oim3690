@@ -1,0 +1,11 @@
+#things I don't understand
+1. What meta means
+2. what a hero section is
+3. what is a flex
+4. when does it make sense to go down to the next line
+5. content: ''
+6. overflow: hidden
+7. .hero::before
+8. http://www.w3.org/2000/svg
+9. how colors are pulled: rgba(255, 230, 109, 0.3);
+10. @keyframes bounce {
