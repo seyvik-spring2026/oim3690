@@ -1,0 +1,65 @@
+/* projects.css - styles for the projects page */
+
+/* Google Font import */
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.5;
+    background-color: #f9f9f9;
+}
+
+/* container for project sections */
+.project-container {
+    max-width: 960px;
+    margin: 40px auto; /* adds margin around container */
+    padding: 20px;      /* adds padding inside container */
+}
+
+/* each project card/section */
+.project {
+    background-color: #fff;
+    margin-bottom: 20px; /* spacing between projects */
+    padding: 15px;       /* spacing inside the project box */
+    border: 2px solid #333; /* solid border - try dashed/dotted */
+    border-radius: 4px;
+}
+
+/* alternate border styles for demonstration */
+.project.dashed {
+    border-style: dashed;
+}
+
+.project.dotted {
+    border-style: dotted;
+}
+
+/* headings inside project */
+.project h2 {
+    margin-top: 0;
+}
+
+/* image inside project sample */
+.project img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto 10px; /* center image and add bottom margin */
+}
+
+/* button or link styling example */
+.project a {
+    display: inline-block;
+    padding: 8px 12px;
+    margin-top: 10px;
+    background-color: #007acc;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 3px;
+}
+
+.project a:hover {
+    background-color: #005fa3;
+}
