@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To-Do List</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: #f5f5f5;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 48px 16px;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #111;
+      margin-bottom: 24px;
+    }
+
+    .input-row {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .input-row input {
+      flex: 1;
+      padding: 10px 14px;
+      font-size: 0.95rem;
+      border: 1.5px solid #ddd;
+      border-radius: 8px;
+      outline: none;
+      background: #fff;
+      transition: border-color 0.15s;
+    }
+
+    .input-row input:focus { border-color: #555; }
+
+    button {
+      padding: 10px 16px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, opacity 0.15s;
+    }
+
+    .btn-add {
+      background: #111;
+      color: #fff;
+    }
+
+    .btn-add:hover { background: #333; }
+
+    .btn-clear {
+      display: block;
+      margin-top: 12px;
+      background: transparent;
+      color: #999;
+      font-size: 0.8rem;
+      font-weight: 500;
+      padding: 6px 0;
+      border-radius: 0;
+    }
+
+    .btn-clear:hover { color: #e74c3c; }
+
+    ul {
+      list-style: none;
+    }
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: #fff;
+      border: 1.5px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 8px;
+      transition: opacity 0.15s;
+    }
+
+    li.done { opacity: 0.5; }
+
+    li input[type="checkbox"] {
+      width: 17px;
+      height: 17px;
+      accent-color: #111;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .task-text {
+      flex: 1;
+      font-size: 0.95rem;
+      color: #222;
+      word-break: break-word;
+    }
+
+    li.done .task-text {
+      text-decoration: line-through;
+      color: #aaa;
+    }
+
+    .btn-delete {
+      background: transparent;
+      color: #ccc;
+      font-size: 1.1rem;
+      line-height: 1;
+      padding: 2px 6px;
+      border-radius: 4px;
+      flex-shrink: 0;
+    }
+
+    .btn-delete:hover { color: #e74c3c; background: #fff0ee; }
+
+    .empty {
+      text-align: center;
+      color: #bbb;
+      font-size: 0.9rem;
+      padding: 32px 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>To-Do</h1>
+
+    <div class="input-row">
+      <input type="text" id="taskInput" placeholder="Add a task…" maxlength="200">
+      <button class="btn-add" onclick="addTask()">Add</button>
+    </div>
+
+    <ul id="taskList"></ul>
+    <p class="empty" id="emptyMsg">No tasks yet.</p>
+    <button class="btn-clear" id="clearBtn" onclick="clearAll()" style="display:none">Clear all</button>
+  </div>
+
+  <script>
+    const input    = document.getElementById('taskInput');
+    const list     = document.getElementById('taskList');
+    const emptyMsg = document.getElementById('emptyMsg');
+    const clearBtn = document.getElementById('clearBtn');
+
+    input.addEventListener('keydown', e => { if (e.key === 'Enter') addTask(); });
+
+    function addTask() {
+      const text = input.value.trim();
+      if (!text) return;
+      input.value = '';
+
+      const li = document.createElement('li');
+
+      const cb = document.createElement('input');
+      cb.type = 'checkbox';
+      cb.addEventListener('change', () => li.classList.toggle('done', cb.checked));
+
+      const span = document.createElement('span');
+      span.className = 'task-text';
+      span.textContent = text;
+
+      const del = document.createElement('button');
+      del.className = 'btn-delete';
+      del.textContent = '×';
+      del.title = 'Delete';
+      del.addEventListener('click', () => { li.remove(); sync(); });
+
+      li.append(cb, span, del);
+      list.appendChild(li);
+      sync();
+      input.focus();
+    }
+
+    function clearAll() {
+      if (!confirm('Delete all tasks?')) return;
+      list.innerHTML = '';
+      sync();
+    }
+
+    function sync() {
+      const empty = list.children.length === 0;
+      emptyMsg.style.display = empty ? 'block' : 'none';
+      clearBtn.style.display = empty ? 'none' : 'block';
+    }
+  </script>
+</body>
+</html>

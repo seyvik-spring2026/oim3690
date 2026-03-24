@@ -8,4 +8,4 @@ OIM3690 Class
 ## Projects
 
 - **Personal Website**: [`https://seyvik-spring2026.github.io/`](https://seyvik-spring2026.github.io/)
-- **Mini Project 1**: [Mudita Storytelling Engine](https://github.com/seyvik-spring2026/mini-project-1) — AI-powered Twitter/X scraper for discovering emerging AI founders
+- **Mini Project 1**: [StoryEngine](https://github.com/seyvik-spring2026/mini-project-1) | [Live Site](https://storyengine-black.vercel.app/) — Turn customer wins into a full content suite powered by AI
